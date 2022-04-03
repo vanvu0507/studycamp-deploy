@@ -82,7 +82,8 @@ app.use(async(err, req, res, next) => {
     res.status(statusCode).render('error', { user,err })
 })
 
-app.listen(3457, () => {
-    console.log('APP IS LISTENING ON PORT 3457!')
+const port = process.env.PORT || 3457
+app.listen(port, () => {
+    console.log(`APP IS LISTENING ON PORT ${port}!`)
 })
 

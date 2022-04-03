@@ -1,0 +1,33 @@
+<%- include('../partials/head.ejs') %>
+<div class="container">
+    <div class="row">
+        <img class="img-fluid" src="/uploads/search.png" alt="">
+    </div>
+
+    <div class="row">
+        <p class="text-center fs-2 fw-bolder">Tìm kiếm cho : "<%= searchLanguage[0].language %> " </p><br>
+        <p class="text-center fs-3">Có <%= searchLanguage.length %> khóa học phù hợp với tìm kiếm </p>
+    </div>
+
+    <div class="row">
+        <% searchLanguage.forEach(lg => {%>
+            <div class="col-lg-3">
+            <div class="card" style="width: 18rem;">
+           <a href="/courses/<%= lg._id %> "><img src="/<%= lg.image%>" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+            <h5 class="card-title"><%= lg.title %> </h5>
+            <div class="d-flex justify-content-between">
+                <p class="card-text"><%= lg.category %> </p>
+                <p class="card-text text-success"><%= lg.price %> vnd </p>
+            </div>
+            <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
+            </div>
+            </div>    
+            </div>
+        <%}); %> 
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 
+</body>
+</html>

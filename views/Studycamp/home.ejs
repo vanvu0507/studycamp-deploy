@@ -1,0 +1,371 @@
+<%- include('../partials/head') %>
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg"
+          class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://files.realpython.com/media/Python-AI-How-to-Build-Your-First-Neural-Network_Watermarked.68fe2ddda7ae.jpg"
+          class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://files.realpython.com/media/A-Basic-Python-Setup-for-Machine-Learning-on-Windows_Watermarked.74516636f737.jpg"
+          class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="container mt-3">
+
+    <div class="row">
+      <h2>TIN CÔNG NGHỆ</h2>
+      <div class="col-lg-6">
+
+        <div class="row">
+          <% news.forEach((tintuc,index) => {%>
+            <% if(index == news.length-1){%>
+              <img src="<%= tintuc.image.url %> " class="img-thumbnail" alt="...">
+              <a class="nav-link text-dark h4" href="#">
+                <%= tintuc.title %>
+              </a>
+              <div class="d-flex justify-content-between">
+                <p class="ms-1 text-muted text-truncate" style="max-width: 300px;"><%= tintuc.description %> </p>
+                <p class="text-muted"><%= tintuc.time %></p>
+              </div>
+
+              <%} %> 
+            <%}) %> 
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+
+        <% for(let n = news.length; n >= 0; n--){%>
+          <% if(n < news.length-1 && n >= news.length-4){%>
+            <div class="row">
+              <div class="col-5">
+                <img src="<%= news[n].image.url %> " class="img-fluid img-thumbnail" alt="...">
+              </div>
+              <div class="col-7">
+                <a class="nav-link text-dark h6" href="#">
+                  <%= news[n].title %>
+                </a>
+                <p class="ms-3 text-muted text-truncate" style="max-width: 300px;"><%= news[n].description %> </p>
+              </div>
+            </div>
+          <%} %> 
+          <%} %> 
+
+      </div>
+    </div>
+
+    <div class="row">
+      <h2>CÁC KHÓA HỌC NỔI BẬT</h2>
+      <% for(let category of categories) {%>
+        <% if(category == 'Kiến thức cơ sở') {%>
+          <h2 class="mt-2">
+            <%= category.toUpperCase() %>
+          </h2>
+          <% for(let course of courses) {%>
+              <%if(course.category == 'Kiến thức cơ sở') {%>
+                <div class="col-lg-3 mt-3">
+                <div class="card" style="width: 18rem;">
+                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% course.images.forEach((img,index) => {%>
+                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
+                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %>" class="d-block w-100" alt="..."></a>
+                        </div>
+                      <%}) %>
+                    </div>
+                    <% if(course.images.length > 1){%>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                      <%} %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= course.title %> 
+                    </h5>
+                    <p class="text-muted text-truncate"><%= course.description %> </p>
+                    <div class="d-flex justify-content-between">
+                      <p class="card-text">
+                        <%= course.category %>
+                      </p>
+                      <p class="card-text text-success">
+                        <%= course.price %> vnd
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-lg-baseline justify-content-end">
+                      <form action="/home/<%= course._id %>" method="post">
+                        <button class="btn"><i class="far fa-heart"></i></button>
+                      </form>
+                      <p><%= course.hearts.length %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%}%>
+            <%} %> 
+          <%} %>
+
+          <% if(category == 'Lập trình cơ sở') {%>
+            <h2 class="mt-2">
+              <%= category.toUpperCase() %>
+            </h2>
+            <% for(let course of courses) {%>
+              
+                <%if(course.category == 'Lập trình cơ sở') {%>
+                  <div class="col-lg-3 mt-3">
+                  <div class="card" style="width: 18rem;">
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% course.images.forEach((img,index) => {%>
+                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
+                          <img src="<%= img.url %> " class="d-block w-100" alt="...">
+                        </div>
+                      <%}) %>
+                    </div>
+                    <% if(course.images.length > 1){%>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                      <%} %>
+                  </div>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= course.title %>
+                      </h5>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-text">
+                          <%= course.category %>
+                        </p>
+                        <p class="card-text text-success">
+                          <%= course.price %> vnd
+                        </p>
+                      </div>
+                      <div class="d-flex align-items-lg-baseline justify-content-end">
+                        <i class="far fa-comment-alt"> </i>
+                        <form action="/home/<%= course._id %>" method="post">
+                          <button class="btn"><i class="far fa-heart"></i></button>
+                        </form>
+                        <p><%= course.hearts.length %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%}%>
+              <%} %> 
+            <%} %> 
+
+            <% if(category == 'Lập trình nâng cao') {%>
+              <h2 class="mt-2">
+                <%= category.toUpperCase() %>
+              </h2>
+              <% for(let course of courses) {%>
+                
+                  <%if(course.category == 'Lập trình nâng cao') {%>
+                    <div class="col-lg-3 mt-3">
+                    <div class="card" style="width: 18rem;">
+                      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% course.images.forEach((img,index) => {%>
+                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
+                          <img src="<%= img.url %> " class="d-block w-100" alt="...">
+                        </div>
+                      <%}) %>
+                    </div>
+                    <% if(course.images.length > 1){%>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                      <%} %>
+                  </div>
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%= course.title %>
+                        </h5>
+                        <div class="d-flex justify-content-between">
+                          <p class="card-text">
+                            <%= course.category %>
+                          </p>
+                          <p class="card-text text-success">
+                            <%= course.price %> vnd
+                          </p>
+                        </div>
+                        <div class="d-flex align-items-lg-baseline justify-content-end">
+                          <form action="/home/<%= course._id %>" method="post">
+                            <button class="btn"><i class="far fa-heart"></i></button>
+                          </form>
+                          <p><%= course.hearts.length %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <%}%>
+                <%} %> 
+              <%} %> 
+
+              <% if(category == 'Giải quyết vấn đề') {%>
+                <h2 class="mt-2">
+                  <%= category.toUpperCase() %>
+                </h2>
+                <% for(let course of courses) {%>
+                  
+                    <%if(course.category == 'Giải quyết vấn đề') {%>
+                      <div class="col-lg-3 mt-3">
+                      <div class="card" style="width: 18rem;">
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% course.images.forEach((img,index) => {%>
+                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
+                          <img src="<%= img.url %> " class="d-block w-100" alt="...">
+                        </div>
+                      <%}) %>
+                    </div>
+                    <% if(course.images.length > 1){%>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                      <%} %>
+                  </div>
+                        <div class="card-body">
+                          <h5 class="card-title">
+                            <%= course.title %>
+                          </h5>
+                          <div class="d-flex justify-content-between">
+                            <p class="card-text">
+                              <%= course.category %>
+                            </p>
+                            <p class="card-text text-success">
+                              <%= course.price %> vnd
+                            </p>
+                          </div>
+                          <div class="d-flex align-items-lg-baseline justify-content-end">
+                            <form action="/home/<%= course._id %>" method="post">
+                              <button class="btn"><i class="far fa-heart"></i></button>
+                            </form>
+                            <p><%= course.hearts.length %></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <%}%>
+                  <%} %> 
+                <%} %> 
+
+                <% if(category == 'Kỹ năng nâng cao') {%>
+                  <h2 class="mt-2">
+                    <%= category.toUpperCase() %>
+                  </h2>
+                  <% for(let course of courses) {%>
+                    
+                      <%if(course.category == 'Kỹ năng nâng cao') {%>
+                        <div class="col-lg-3 mt-3">
+                        <div class="card" style="width: 18rem;">
+                          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% course.images.forEach((img,index) => {%>
+                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
+                          <img src="<%= img.url %> " class="d-block w-100" alt="...">
+                        </div>
+                      <%}) %>
+                    </div>
+                    <% if(course.images.length > 1){%>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                      <%} %>
+                  </div>
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              <%= course.title %>
+                            </h5>
+                            <div class="d-flex justify-content-between">
+                              <p class="card-text">
+                                <%= course.category %>
+                              </p>
+                              <p class="card-text text-success">
+                                <%= course.price %> vnd
+                              </p>
+                            </div>
+                            <div class="d-flex align-items-lg-baseline justify-content-end">
+                              <form action="/home/<%= course._id %>" method="post">
+                                <button class="btn"><i class="far fa-heart"></i></button>
+                              </form>
+                              <p><%= course.hearts.length %></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <%}%>
+                    <%} %> 
+                  <%} %> 
+          
+        <%} %>
+    </div>
+
+  </div>
+  
+  <%- include('../partials/footer') %> 
+  </body>
+
+  </html>

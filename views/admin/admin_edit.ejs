@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Chỉnh sửa sản phẩm</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/all.min.js"></script>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/scripts.js"></script>
+
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light"><a class="navbar-brand text-dark" href="/home">STUDY CAMP</a></div>
+            <div class="list-group list-group-flush border-bottom text-center">
+                <img src="/uploads/user.png" style="width:50%" class="rounded-circle mx-auto mt-2 mb-2" alt="...">
+                <b>Quản trị viên<br><%= admin.username %> </b>
+            </div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin"><i class="fas fa-pen-alt"></i> Thêm khóa học</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage"><i class="fas fa-tasks"></i> Quản lý khóa học</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage/users"><i class="fas fa-users"></i> Quản lý thành viên</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/news"><i class="far fa-newspaper"></i> Quản lý bài viết</a>
+                <form action="/logout_admin" method="post"><button type="submit" class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></form>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle">ON/OFF</button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                </div>
+            </nav>
+            <!-- Page content-->
+            <div class="container-fluid">
+
+                <h1 class="text-center">Chỉnh sửa sản phẩm</h1>
+
+                <form action="/courses/<%= course._id %>?_method=PUT" class="row g-3 mx-auto" method="POST" enctype="multipart/form-data">
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <label for="duration" class="form-label">Thời lượng</label>
+                            <input type="text" class="form-control" id="duration" name="duration"
+                                value="<%= course.duration %>" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <label for="section" class="form-label">Số bài tập</label>
+                            <input type="number" class="form-control" id="section" name="section"
+                                value="<%= course.section %>" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <label for="title" class="form-label">Tên khóa học</label>
+                            <input type="text" class="form-control" id="name" name="title" value="<%= course.title %>"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <label for="price" class="form-label">Giá</label>
+                            <input type="number" class="form-control" id="number" name="price"
+                                value="<%= course.price %>" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <input type="file" class="mb-3" name="image" multiple>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <label for="category" class="form-label">Loại khóa học</label>
+                            <select name="category" id="category">
+                                <% for(let category of categories){ %>
+                                <option value="<%=category%>" <%= course.category === category ? 'selected': '' %>><%=category%></option>
+                                <% } %>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <% course.images.forEach(function(img, i) {  %>
+                                <img src="<%=img.thumbnail %>" class="img-thumbnail mb-4" alt="">
+                                <div class="form-check-inline">
+                                    <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                                </div>
+                                <label for="image-<%=i%>">Delete?</label>
+                                <% })%>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary">Thêm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

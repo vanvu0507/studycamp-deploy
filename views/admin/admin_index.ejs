@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/all.min.css"> 
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/all.min.js"></script>
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="/js/scripts.js"></script>
+       
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light"><a class="navbar-brand text-dark" href="/home">STUDY CAMP</a></div>
+                <div class="list-group list-group-flush border-bottom text-center">
+                    <img src="uploads/user.png" style="width:50%" class="rounded-circle mx-auto mt-2 mb-2" alt="...">
+                    <b>Quản trị viên<br><%= admin.username %> </b>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin"><i class="fas fa-pen-alt"></i> Thêm khóa học</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage"><i class="fas fa-tasks"></i> Quản lý khóa học</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage/users"><i class="fas fa-users"></i> Quản lý thành viên</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/news"><i class="far fa-newspaper"></i> Quản lý bài viết</a>
+                    <form action="/logout_admin" method="post"><button type="submit" class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></form>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">ON/OFF</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <form action="/courses" class="row g-3 mx-auto" method="POST" novalidate enctype="multipart/form-data">
+                        
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                              <label for="duration" class="form-label">Thời lượng</label>
+                              <input type="text" class="form-control" id="duration" name="duration" placeholder="Hours" required>
+                            </div>
+
+                            <div class="col-md-4">
+                              <label for="section" class="form-label">Số bài tập</label>
+                              <input type="number" class="form-control" id="section" name="section" required>
+                            </div>
+
+                            <div class="col-md-4">
+                              <label for="title" class="form-label">Tên khóa học</label>
+                              <input type="text" class="form-control" id="name" name="title" required>
+                            </div>
+
+                            <div class="col-md-4">
+                              <label for="price" class="form-label">Giá</label>
+                              <input type="number" class="form-control" id="number" name="price" placeholder="VND" required>
+                            </div>
+
+                              <div class="col-md-4">
+                              <label for="description" class="form-label">Mô tả</label>
+                              <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-3">
+                          <div class="col-md-4">
+                            <input type="file" class="mb-3" name="image" multiple>
+                          </div>
+
+                          <div class="col-md">
+                            <label for="category" class="form-label">Loại khóa học</label>
+                            <select name="category" id="category">
+                              <% for(let category of categories){ %>
+                              <option value="<%=category%>"><%=category%></option>
+                              <% } %>
+                          </select> 
+                          </div>
+                        </div>
+
+                        <div class="row g-3">
+                        <div class="col">
+                          <button class="btn btn-primary">Thêm</button>
+                        </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

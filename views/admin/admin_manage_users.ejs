@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/all.min.css"> 
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/all.min.js"></script>
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="/js/scripts.js"></script>
+       
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light"><a class="navbar-brand text-dark" href="/home">STUDY CAMP</a></div>
+                <div class="list-group list-group-flush border-bottom text-center">
+                    <img src="/uploads/user.png" style="width:50%" class="rounded-circle mx-auto mt-2 mb-2" alt="...">
+                    <b>Quản trị viên<br><%= admin.username %> </b>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin"><i class="fas fa-pen-alt"></i> Thêm khóa học</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage"><i class="fas fa-tasks"></i> Quản lý khóa học</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manage/users"><i class="fas fa-users"></i> Quản lý thành viên</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/news"><i class="far fa-newspaper"></i> Quản lý bài viết</a>
+                    <form action="/logout_admin" method="post"><button type="submit" class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></form>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">ON/OFF</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Sinh nhật</th>
+                            <th scope="col">Thành phố</th>
+                            <th scope="col">Điện thoại</th>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Email</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let user of users){%>
+                            <tr>
+                            <th scope="row"> <%= user._id %>  </th>
+                            <td><%= user.userinformation.ten %> </td>
+                            <td><%= user.userinformation.dob %> </td>
+                            <td><%= user.userinformation.city %> </td>
+                            <td><%= user.userinformation.tel %> </td>
+                            <td><%= user.username %> </td>
+                            <td><%= user.email %> </td>
+                          </tr>
+                            <%} %> 
+
+                        </tbody>
+                      </table>
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination float-end">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <form action="/admin/manage/users" method="get"><li class="page-item"><button name="page" value="1" class="page-link">1</button></li></form>
+                          <form action="/admin/manage/users" method="get"><li class="page-item"><button name="page" value="2" class="page-link">2</button></li></form>
+                          <form action="/admin/manage/users" method="get"><li class="page-item"><button name="page" value="3" class="page-link">3</button></li></form>
+                          <form action="/admin/manage/users" method="get"><li class="page-item"><button name="page" value="4" class="page-link">4</button></li></form>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+
+                      <div class="row">
+                          <div class="col">
+                              <form action="/admin/manage/users" method="get">
+                              <label for="id">Tra cứu lịch sử hoạt động người dùng</label>
+                              <input type="text" name="userId" id="id" placeholder="ID người dùng">
+                              <button class="btn btn-primary">Tìm</button>
+                              </form>
+                              <% if(userReview) {%>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Bình luận</th>
+                                            <th scope="col">Đánh giá</th>
+                                            <th scope="col">Khóa học</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% for(let userrv of userReview) {%>
+                                          <tr>             
+                                            <th scope="row"><%= userrv._id %></th>
+                                            <td><%= userrv.body %></td>
+                                            <td><%= userrv.rating %></td>
+                                            <td><%= userrv.course.title %></td>
+                                            <form action="/admin/manage/users/<%= userrv.author._id %>/<%= userrv._id %>" method="post"><td><button class="btn btn-primary"><i class="far fa-minus-square"></i></button></td></form>
+                                          </tr>
+                                          <%} %>
+                                        </tbody>
+                                      </table>
+                                    <%} %> 
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

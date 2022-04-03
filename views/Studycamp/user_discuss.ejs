@@ -1,0 +1,81 @@
+<%- include('../partials/head') %> 
+<div class="container-fluid">
+    <div class="card mb-3 ">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title"><%= ask.topic %></h5>
+                <% if(currentUser) {%>
+                    <form action="/discuss/review/<%= ask._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Xóa bài đăng</button>
+                    </form>
+                    <%} %>
+            </div>
+
+            <div class="position-relative">
+                <p class="card-text"><%= ask.content %></p>
+                <p class="text-danger position-absolute end-0 top-0"><%= error %></p>
+            </div>
+            <p class="card-text text-muted mb-2">Bởi : <%= ask.author.email %></p>
+            <p class="card-text fw-bold mb-2">Tags <a href=""><%= ask.tags %></a> </p>
+
+            <form action="/discuss/review/<%= ask._id %>" method="post" class="validate-form" novalidate>
+                <div class="mt-3 mb-3">
+                    <label class="form-label" for="body">Bình luận</label>
+                    <textarea class="form-control" name="DiscussReview[body]" id="body" cols="30" rows="3" required></textarea>
+                    <div class="valid-feedback">
+                        Tốt !
+                    </div>
+                </div>
+                <button class="btn btn-primary">Đăng</button>
+            </form>
+
+            <div class="mt-5">
+                <p class="text-primary"> <%= ask.review.length %>  Bình luận</p>
+                <hr>
+            </div>
+
+            <div class="mt-3">
+                <% for(let rv of ask.review) { %>
+                    <div class="card mb-3 ">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-start">
+                                <p class="card-text text-muted mb-2">Bởi: <%= rv.author.email %></p>
+                                <img src="/uploads/<%= rv.author.userinformation.image %>" class="ms-2 rounded-circle" style="width:25px;height:25px" alt="">
+                            </div>
+                            <h5 class="card-title"> <%= rv.date %> </h5>
+                            <p class="card-text"><%= rv.body %></p>
+                            <form action="/discuss/review/<%= rv._id %>/<%= ask._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">Xóa bình luận</button>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 
+</body>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.validate-form')
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+    
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>

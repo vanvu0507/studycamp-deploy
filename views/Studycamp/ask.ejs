@@ -1,0 +1,45 @@
+<%- include('../partials/head') %>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-lg-9">
+      <h1>Chủ đề</h1>
+      <form action="/discuss" method="post" novalidate class="validate-form">
+        <label for="topic" class="fw-bold">Tiêu đề <span class="text-danger">*</span></label>
+        <input type="text" class="form-control mb-3" name="ask[topic]" id="topic" placeholder="Tiêu đề" required>
+        <label for="tags" class="fw-bold">Tags <span class="text-danger">*</span></label>
+        <input type="text" class="form-control mb-3" name="ask[tags]" id="tags" placeholder="Tags" required>  
+        <label for="content" class="fw-bold">Nội dung <span class="text-danger">*</span></label>
+        <textarea class="form-control mb-3" style="height: 100px;" name="ask[content]" id="content" placeholder="Nội dung" required></textarea>
+        <button class="btn btn-primary float-end" type="submit">Đăng</button>
+        <a href="/home" class="btn btn-light float-end me-2">Hủy</a>
+    </form>
+    </div>
+  </div>
+  
+</div>
+
+<%- include('../partials/footer') %>
+</body>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.validate-form')
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+    
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+  </html>

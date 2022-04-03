@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+<body style="background-color: rgb(186, 190, 190);">
+<div class="container" >
+    <div class="row mt-5" style="height: 700px;">
+        <div class="col bg-light position-relative h-100">
+            <div class="list-group position-absolute start-0 w-100 rounded-0">
+                <a href="#" class="list-group-item list-group-item-action border-0 active">Thông tin & liên hệ</a>
+                <a href="#" class="list-group-item list-group-item-action border-0">Quản lý đội</a>
+                <a href="#" class="list-group-item list-group-item-action border-0">Đổi mật khẩu</a>
+              </div>
+        </div>
+        <div class="col-9 ms-3 bg-light">
+            <div class="row mt-4 ms-3">
+                <h3 class="text-primary">Thông tin</h3>
+            </div>
+            <div class="row mt-2 ms-3">
+                <form action="/manage_account/<%= user._id %>?_method=PUT" method="post" novalidate class="validate-form">
+                <div class="col" style="margin-left: 44%;">
+                    <img <% if(user.userinformation){%> src="/uploads/<%= user.userinformation.image %>"<%}else{%> src ="/uploads/user.png"<%} %> class="rounded-circle" style="width: 80px; height:80px" alt="...">
+                    <p>Ảnh đại diện của bạn</p>
+                    <input type="file" name="image" multiple>
+                </div>
+                <div class="col">
+                        <label for="name">Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text"  name = "ten" <% if(user.userinformation){%>value="<%= user.userinformation.ten %> "<%} %>  id="name" class="form-control mb-3">
+                        <label for="dob">Ngày sinh <span class="text-danger">*</span></label>
+                        <input type="date" name="dob" <% if(user.userinformation){%> value="<%= user.userinformation.dob %> "<%} %>  id="dob" class="form-control mb-3">
+                        <label for="tel">Số điện thoại <span class="text-danger">*</span></label>
+                        <input type="text" name="tel" <% if(user.userinformation){%>value="<%= user.userinformation.tel %> "<%} %> id="tel" class="form-control mb-3">
+                        <label for="city">Thành phố<span class="text-danger">*</span></label>
+                        <input type="text" name="city" <% if(user.userinformation){%>value="<%= user.userinformation.city %> "<%} %> id="city" class="form-control mb-3">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<%- include('../partials/footer') %> 
+</body>
+</html>

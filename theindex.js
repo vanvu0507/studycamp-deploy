@@ -17,7 +17,7 @@ const User = require('./data/users');
 const ExpressError = require('./util/ExpressError')
 const MongoDBStore = require("connect-mongo");
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/WebCSKT'
+const dbUrl = process.env.DB_URL || 'mongodb+srv://vanvu572:345712@cluster0.41n8n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const secret = process.env.SECRET || 'notagoodsecret';
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })

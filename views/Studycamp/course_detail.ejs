@@ -22,7 +22,7 @@
         </div>
 
         <div class="col fw-bolder">
-        <p class="card-text"><%= detailcourse.authors.username %> </p>
+        <p class="card-text"><%= detailcourse.authors ? detailcourse.authors.username : 'Studycamp' %> </p>
         <p class="card-text"><%= detailcourse.duration %> giờ</p>
         <p class="card-text"><%= detailcourse.section %></p>
         <p class="card-text">Giấy chứng nhận</p>

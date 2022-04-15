@@ -177,4 +177,11 @@ route.post('/logout_admin', async(req,res) => {
     res.redirect('/admin/login')
 })
 
+// trang dữ liệu JSON
+route.get('/json/courses',async(req,res) => {
+    const courses = await Courses.find({})
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(courses));
+})
+
 module.exports = route

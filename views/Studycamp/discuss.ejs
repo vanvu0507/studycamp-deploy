@@ -32,7 +32,7 @@
                 <p class="card-text"><%= ask.content %></p>
                 <div class="d-flex justify-content-start">
                     <p class="card-text text-muted mb-2">Bởi : <%= ask.author.email %></p>
-                    <img src="/uploads/<%= ask.author.userinformation.image %>" class="ms-2 rounded-circle" style="width:25px;height:25px" alt="">
+                    <img src="/uploads/<%= ask.author.userinformation ? ask.author.userinformation.image : 'user.png' %>" class="ms-2 rounded-circle" style="width:25px;height:25px" alt="">
                 </div>
                 <form action="/discuss" method="get">
                     <p class="card-text fw-bold mb-2">Tags <button style="background-color: white" class="border-0 text-primary fw-bold" name="tags" value="<%= ask.tags  %>"><%= ask.tags %></button></p>

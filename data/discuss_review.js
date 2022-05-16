@@ -5,7 +5,7 @@ const discussRVSchema = new mongoose.Schema({
     date: Date,
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'MobileUser'
     }
 })
 

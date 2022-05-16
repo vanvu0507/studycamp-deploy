@@ -40,7 +40,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-start">
                                 <p class="card-text text-muted mb-2">Bởi: <%= rv.author.email %></p>
-                                <img src="/uploads/<%= rv.author.userinformation.image %>" class="ms-2 rounded-circle" style="width:25px;height:25px" alt="">
+                                <img src="/uploads/<%= rv.author.userinformation ? rv.author.userinformation.image : 'user.png' %>" class="ms-2 rounded-circle" style="width:25px;height:25px" alt="">
                             </div>
                             <h5 class="card-title"> <%= rv.date %> </h5>
                             <p class="card-text"><%= rv.body %></p>

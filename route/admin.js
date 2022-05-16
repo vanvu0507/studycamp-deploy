@@ -179,9 +179,42 @@ route.post('/logout_admin', async(req,res) => {
 
 // trang dữ liệu JSON
 route.get('/json/courses',async(req,res) => {
-    const courses = await Courses.find({})
-    res.setHeader('Content-Type', 'application/json');
+    const courses = await Courses.find({}).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    })
+    res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(courses));
+})
+
+// test post json
+route.post('/post', (req,res) => {
+    const username = req.body.username
+    console.log(username)
+    Admin.findOne({username})
+    .then(user => {
+        if(!user) {
+            return res.status(404).json({message: 'user not found'})
+        } else  {
+            // password hash
+            bcrypt.compare(req.body.password, user.password, (err, compareRes) => {
+                if(err) { //error while comparing
+                    res.status(502).json({message: 'error while checking user password'})
+                } else if (compareRes) { //password hash
+                    const token = jwt.sign({username: req.body.username}, 'secret', { expiresIn: '1m'})
+                    res.status(200).json({message: "user logged in", "token": token})
+                } else { // password doesnt match
+                    res.status(401).json({message: "invalid credentials"});
+                }
+            })
+        }
+    })
+    .catch(err => {
+        console.log('error', err)
+    })
+
 })
 
 module.exports = route

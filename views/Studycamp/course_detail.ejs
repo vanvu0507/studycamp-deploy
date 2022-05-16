@@ -60,7 +60,7 @@
                     <h5 class="card-title">Rating: <%= review.rating %></h5>
                     <div class="d-flex justify-content-start">
                       <p class="card-text text-muted mb-2">Thành viên : <%= review.author.username %></p>
-                      <img src="/uploads/<%= review.author.userinformation.image  %>" style="margin-left:10px;width:25px;height:25px" alt="">
+                      <img src="/uploads/<%= review.author.userinformation ? review.author.userinformation.image : 'user.png'  %>" style="margin-left:10px;width:25px;height:25px" alt="">
                     </div>
                     <p class="card-text">Review: <%= review.body %></p>
                     <form action="/courses/<%= detailcourse._id %>/<%= review._id %>?_method=DELETE" method="POST">

@@ -13,9 +13,11 @@ const LocalStrategy = require('passport-local');
 const studycampRout = require('./route/StudyCamp');
 const userRout = require('./route/user');
 const adminRout = require('./route/admin');
+const mobileRout = require('./route/mobile')
 const User = require('./data/users');
 const ExpressError = require('./util/ExpressError')
 const MongoDBStore = require("connect-mongo");
+const bodyParser = require('body-parser')
 
 const dbUrl = process.env.DB_URL || 'mongodb+srv://vanvu572:345712@cluster0.41n8n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const secret = process.env.SECRET || 'notagoodsecret';
@@ -32,6 +34,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.set('data',path.join(__dirname,'/data'))
 app.use(express.static(path.join(__dirname,'public')))
+app.use(bodyParser.json()) 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
@@ -61,7 +64,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req,res,next) => {
-    res.locals.currentUser = req.user
+    res.locals.currentUser = req.session.userId
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next()
@@ -70,6 +73,7 @@ app.use((req,res,next) => {
 app.use('/',studycampRout)
 app.use('/',userRout)
 app.use('/',adminRout)
+app.use('/',mobileRout)
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))

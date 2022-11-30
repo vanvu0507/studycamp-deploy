@@ -104,22 +104,13 @@
                 <div class="card" style="width: 18rem;">
                   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% course.images.forEach((img,index) => {%>
-                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
-                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %>" class="d-block w-100" alt="..."></a>
+                    
+                        <div class="carousel-item active">
+                          <a href="/courses/<%= course._id %>"><img src="<%= course.images %>" class="d-block w-100" alt="..."></a>
                         </div>
-                      <%}) %>
-                    </div>
-                    <% if(course.images.length > 1){%>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                      <%} %>
+
+                      </div>
+                  
                   </div>
                   <div class="card-body">
                     <h5 class="card-title">
@@ -158,22 +149,13 @@
                   <div class="card" style="width: 18rem;">
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% course.images.forEach((img,index) => {%>
-                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
-                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %> " class="d-block w-100" alt="..."></a>
+                     
+                        <div class="carousel-item active">
+                          <a href="/courses/<%= course._id %>"><img src="<%= course.images %> " class="d-block w-100" alt="..."></a>
                         </div>
-                      <%}) %>
-                    </div>
-                    <% if(course.images.length > 1){%>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                      <%} %>
+
+                      </div>
+                  
                   </div>
                     <div class="card-body">
                       <h5 class="card-title">
@@ -212,22 +194,13 @@
                     <div class="card" style="width: 18rem;">
                       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% course.images.forEach((img,index) => {%>
-                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
-                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %> " class="d-block w-100" alt="..."></a>
+                     
+                        <div class="carousel-item active">
+                          <a href="/courses/<%= course._id %>"><img src="<%= course.images %> " class="d-block w-100" alt="..."></a>
                         </div>
-                      <%}) %>
+                     
                     </div>
-                    <% if(course.images.length > 1){%>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                      <%} %>
+                   
                   </div>
                       <div class="card-body">
                         <h5 class="card-title">
@@ -265,22 +238,13 @@
                       <div class="card" style="width: 18rem;">
                         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% course.images.forEach((img,index) => {%>
-                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
-                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %> " class="d-block w-100" alt="..."></a>
+                     
+                        <div class="carousel-item active">
+                          <a href="/courses/<%= course._id %>"><img src="<%= course.images %> " class="d-block w-100" alt="..."></a>
                         </div>
-                      <%}) %>
+                     
                     </div>
-                    <% if(course.images.length > 1){%>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                      <%} %>
+                   
                   </div>
                         <div class="card-body">
                           <h5 class="card-title">
@@ -318,22 +282,13 @@
                         <div class="card" style="width: 18rem;">
                           <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% course.images.forEach((img,index) => {%>
-                        <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
-                          <a href="/courses/<%= course._id %>"><img src="<%= img.url %> " class="d-block w-100" alt="..."></a>
+                     
+                        <div class="carousel-item active">
+                          <a href="/courses/<%= course._id %>"><img src="<%= course.images %> " class="d-block w-100" alt="..."></a>
                         </div>
-                      <%}) %>
+                     
                     </div>
-                    <% if(course.images.length > 1){%>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                      <%} %>
+                   
                   </div>
                           <div class="card-body">
                             <h5 class="card-title">

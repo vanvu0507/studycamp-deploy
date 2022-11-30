@@ -3,7 +3,7 @@ const route = express.Router()
 const bcrypt = require('bcryptjs');
 const multer  = require('multer');
 const { storage, cloudinary } = require('../cloudinary');
-const upload = multer({ storage });
+const upload = multer({ dest: './uploads' });
 const Admin = require('../data/admin');
 const Courses = require('../data/courses');
 const News = require('../data/news')
@@ -136,9 +136,19 @@ route.post('/admin/news',upload.single('image'),async(req,res) => {
 })
 
 // upload khóa học
-route.post('/courses',upload.array('image'), async(req,res) => {
+route.post('/add-courses',upload.single('image'), async(req,res) => {
     const newCourse = new Courses(req.body)
-    newCourse.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+
+    const result = await cloudinary.uploader.upload(`./${req.file.path}`, {
+        public_id: `${req.file.originalname}`,
+        resource_type: "auto",
+        raw_convert: "aspose",
+        folder: 'Studycamp',
+    })
+
+    console.log(result);
+
+    newCourse.images = result.url;
     newCourse.authors = req.session.admin_id
     await newCourse.save()
     res.redirect('/admin/manage')

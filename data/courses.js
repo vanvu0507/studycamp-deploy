@@ -28,9 +28,9 @@ const coursesSchema = new mongoose.Schema({
         min: [0, 'price must be positive'],
         required: true
     },
-    images: [
+    images: String/*[
         ImageSchema
-    ],
+    ]*/,
     video: {
         type: String,
         // required: true
